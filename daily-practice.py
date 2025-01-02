@@ -3,9 +3,9 @@ import random
 from datetime import datetime, timedelta
 import os
 
-# Date range: June 2025 to February 2026
-start_date = datetime(2025, 6, 1)
-end_date = datetime(2026, 2, 28)
+# Date range: January 2025 to May 2025
+start_date = datetime(2025, 1, 1)
+end_date = datetime(2025, 5, 31)
 
 # Build list of all days
 all_days = []
@@ -14,17 +14,17 @@ while current <= end_date:
     all_days.append(current)
     current += timedelta(days=1)
 
-# Select 65% of days randomly
-selected_days = random.sample(all_days, int(len(all_days) * 0.65))
+# Select 40% of days randomly
+selected_days = random.sample(all_days, int(len(all_days) * 0.40))
 selected_days.sort()
 
-# 20% of selected days will be heavy days (20 commits)
-heavy_days_count = int(len(selected_days) * 0.20)
+# 15% of selected days will be heavy days (~20 commits)
+heavy_days_count = int(len(selected_days) * 0.15)
 heavy_days = set(random.sample(range(len(selected_days)), heavy_days_count))
 
 for idx, day in enumerate(selected_days):
     if idx in heavy_days:
-        num_commits = random.randint(18, 22)  # ~20 commits
+        num_commits = random.randint(18, 23)  # ~20 commits
     else:
         num_commits = random.randint(1, 4)    # normal days
 
